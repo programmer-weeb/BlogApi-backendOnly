@@ -6,6 +6,9 @@ const port = 3000
 const AuthorModel = require('./models/AuthorModel')
 const bcrypt = require('bcryptjs')
 
+const indexRouter = require('./routers/indexRouter')
+const apiRouter = require('./routers/apiRouter')
+
 app.use(express.urlencoded({ extended: false }))
 
 passport.use(
@@ -20,8 +23,8 @@ passport.use(
     })
 )
 
+app.use('/', indexRouter)
+app.use('/api', apiRouter)
 
 app.get('/', (req, res) => res.send('Hello World!'))
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-
-// tst commit
