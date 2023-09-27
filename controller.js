@@ -26,7 +26,7 @@ exports.getAllIdsOfPosts = async (req, res, next) => {
 }
 
 exports.getASinglePostById = async (req, res, next) => {
-    const aPost = await Post.findById(req.params.postId)
+    const aPost = await Post.findById(req.params.postId).populate('comments')
     res.json(aPost)
 }
 
