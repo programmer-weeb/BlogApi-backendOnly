@@ -4,7 +4,8 @@ const postSchema = new mongoose.Schema({
     title: { type: String, maxLength: 22 },
     date: { type: Date, default: Date.now() },
     text: { type: String, required: true },
-    published: { type: Boolean, default: false }
+    published: { type: Boolean, default: false },
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 })
 
 postSchema.virtual('dateFormated').get(function () {
