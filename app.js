@@ -6,9 +6,14 @@ const app = express()
 const port = 3000
 const AuthorModel = require('./models/AuthorModel')
 const bcrypt = require('bcryptjs')
+const mongoose = require('mongoose')
 
 const indexRouter = require('./routers/indexRouter')
 const apiRouter = require('./routers/apiRouter')
+
+mongoose.connect('mongodb://127.0.0.1:27017/blog_post_db').then(res => {
+    console.log('db con');
+})
 
 app.use(express.urlencoded({ extended: false }))
 
