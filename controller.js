@@ -35,3 +35,9 @@ exports.getCommentsOfAPost = async (req, res, next) => {
     console.log(allCommentsOfAPost);
     res.json(allCommentsOfAPost);
 }
+
+exports.getCommentById = async (req, res, next) => {
+    const aComment = await Comment.findById(req.params.commentId)
+    console.log(aComment);
+    res.json(aComment)
+}

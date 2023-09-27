@@ -12,7 +12,7 @@ router.get('/posts/all_ids', controller.getAllIdsOfPosts)
 router.get('/posts/:postId', controller.getASinglePostById)
 router.get('/posts/:postId/comments', controller.getCommentsOfAPost);
 
-router.get('/posts/:postId/comments/:commentId',)
+router.get('/posts/:postId/comments/:commentId', controller.getCommentById)
 router.get('/logout',)
 
 router.post('/posts',)
