@@ -1,4 +1,5 @@
 const Post = require('./models/PostModel')
+const Comment = require('./models/CommentModel')
 
 
 exports.getAllPosts = async (req, res, next) => {
@@ -27,4 +28,10 @@ exports.getAllIdsOfPosts = async (req, res, next) => {
 exports.getASinglePostById = async (req, res, next) => {
     const aPost = await Post.findById(req.params.postId)
     res.json(aPost)
+}
+
+exports.getCommentsOfAPost = async (req, res, next) => {
+    const allCommentsOfAPost = await Post.findById(req.params.postId).populate('comments').select('comments').exec();
+    console.log(allCommentsOfAPost);
+    res.json(allCommentsOfAPost);
 }
