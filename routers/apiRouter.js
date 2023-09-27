@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router()
+const controller = require('../controller')
 
 router.get('/', (req, res) => {
     res.redirect('/api/posts')
 })
-router.get('/posts',)
+router.get('/posts', controller.getAllPosts)
 router.get('/posts/:postId',)
 router.get('/posts/:postId/comments',)
 router.get('/posts/:postId/comments/:commentId',)
