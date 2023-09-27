@@ -14,3 +14,17 @@ exports.getAllPosts = async (req, res, next) => {
 
     res.json(posts)
 }
+
+exports.getAllIdsOfPosts = async (req, res, next) => {
+    const allPosts = await Post.find().exec()
+    const allIds = allPosts.map((post) => {
+        return post.id
+    })
+    console.log(allIds);
+    res.send(allIds)
+}
+
+exports.getASinglePostById = async (req, res, next) => {
+    const aPost = await Post.findById(req.params.postId)
+    res.json(aPost)
+}
