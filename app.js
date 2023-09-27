@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 const indexRouter = require('./routers/indexRouter')
 const apiRouter = require('./routers/apiRouter')
 
-mongoose.connect('mongodb://127.0.0.1:27017/blog_post_db').then(res => {
+mongoose.connect(process.env.DB_URI).then(res => {
     console.log('db con');
 })
 
