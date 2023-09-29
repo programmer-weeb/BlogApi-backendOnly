@@ -58,3 +58,11 @@ exports.handleSignup = [
 		res.send('succ signup')
 	},
 ]
+
+exports.isLoggedInAuthor = (req, res, next) => {
+	if (req.isAuthenticated()) {
+		next()
+	} else {
+		res.sendStatus(401).json({ msg: 'you are not author' })
+	}
+}
