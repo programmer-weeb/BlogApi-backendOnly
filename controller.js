@@ -51,3 +51,10 @@ exports.handleLogin = [
 		res.send('succ login')
 	},
 ]
+
+exports.handleSignup = [
+	passport.authenticate('signup'),
+	(req, res, next) => {
+		res.send('succ signup')
+	},
+]

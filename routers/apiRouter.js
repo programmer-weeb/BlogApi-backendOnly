@@ -18,7 +18,7 @@ router.get('/logout')
 
 router.post('/posts')
 router.post('/posts/:postId/comments')
-router.post('/signup')
+router.post('/signup', controller.handleSignup)
 router.post('/login', controller.handleLogin)
 
 router.delete('/posts/:postId')
