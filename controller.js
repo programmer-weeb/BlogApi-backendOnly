@@ -59,6 +59,13 @@ exports.handleSignup = [
 	},
 ]
 
+exports.handleLogOut = (req, res, next) => {
+	req.logOut((err) => {
+		if (err) console.log(err)
+		console.log('logging Author out')
+	})
+}
+
 exports.isLoggedInAuthor = (req, res, next) => {
 	if (req.isAuthenticated()) {
 		next()

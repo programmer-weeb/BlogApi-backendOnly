@@ -14,7 +14,7 @@ router.get('/posts/:postId', controller.getASinglePostById)
 router.get('/posts/:postId/comments', controller.getCommentsOfAPost)
 
 router.get('/posts/:postId/comments/:commentId', controller.getCommentById)
-router.get('/logout')
+router.get('/logout', controller.handleLogOut)
 
 router.post('/posts')
 router.post('/posts/:postId/comments')
