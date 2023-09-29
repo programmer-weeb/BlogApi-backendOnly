@@ -1,6 +1,7 @@
 const Post = require('./models/PostModel')
 const Comment = require('./models/CommentModel')
 const passport = require('passport')
+const PostModel = require('./models/PostModel')
 
 exports.getAllPosts = async (req, res, next) => {
 	const posts = await Post.find().exec()
@@ -48,6 +49,7 @@ exports.getCommentById = async (req, res, next) => {
 exports.handleLogin = [
 	passport.authenticate('login'),
 	(req, res) => {
+		console.log('succ login')
 		res.send('succ login')
 	},
 ]
@@ -63,6 +65,7 @@ exports.handleLogOut = (req, res, next) => {
 	req.logOut((err) => {
 		if (err) console.log(err)
 		console.log('logging Author out')
+		res.send('done logging out')
 	})
 }
 
@@ -73,3 +76,16 @@ exports.isLoggedInAuthor = (req, res, next) => {
 		res.sendStatus(401).json({ msg: 'you are not author' })
 	}
 }
+
+exports.post_a_new_post = async (req, res) => {
+	const { title, text, published } = req.body
+	const aNewPost = await PostModel.create({ title, text, published })
+	res.json({
+		theNewPost: aNewPost,
+	})
+}
+
+exports.handle_posting_a_post = [
+	this.isLoggedInAuthor,
+	this.post_a_new_post
+]

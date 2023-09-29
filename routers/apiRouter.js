@@ -4,6 +4,7 @@ const controller = require('../controller')
 const Post = require('../models/PostModel')
 const Comment = require('../models/CommentModel')
 const passport = require('passport')
+const PostModel = require('../models/PostModel')
 
 router.get('/', (req, res) => {
 	res.redirect('/api/posts')
@@ -16,7 +17,7 @@ router.get('/posts/:postId/comments', controller.getCommentsOfAPost)
 router.get('/posts/:postId/comments/:commentId', controller.getCommentById)
 router.get('/logout', controller.handleLogOut)
 
-router.post('/posts')
+router.post('/posts', controller.handle_posting_a_post)
 router.post('/posts/:postId/comments')
 router.post('/signup', controller.handleSignup)
 router.post('/login', controller.handleLogin)
