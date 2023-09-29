@@ -22,7 +22,7 @@ router.post('/posts/:postId/comments')
 router.post('/signup', controller.handleSignup)
 router.post('/login', controller.handleLogin)
 
-router.delete('/posts/:postId')
+router.delete('/posts/:postId', controller.handle_deleting_a_post_by_id)
 router.delete('/posts/:postId/comments')
 router.delete('/posts/:postId/comments/:commentId')
 

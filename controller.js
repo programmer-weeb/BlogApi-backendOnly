@@ -85,7 +85,15 @@ exports.post_a_new_post = async (req, res) => {
 	})
 }
 
-exports.handle_posting_a_post = [
+exports.handle_posting_a_post = [this.isLoggedInAuthor, this.post_a_new_post]
+
+exports.handle_deleting_a_post_by_id = [
 	this.isLoggedInAuthor,
-	this.post_a_new_post
+	async (req, res, next) => {
+		const postToDelete = await PostModel.findByIdAndDelete(
+			req.params.postId
+		).exec()
+		console.log('deleting post with id ', req.params.postId)
+		res.redirect('/api/posts')
+	},
 ]
