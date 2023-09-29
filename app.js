@@ -7,32 +7,34 @@ const AuthorModel = require('./models/AuthorModel')
 const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
 const session = require('express-session')
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo')
 const passport = require('passport')
 
 const indexRouter = require('./routers/indexRouter')
 const apiRouter = require('./routers/apiRouter')
 
-mongoose.connect(process.env.DB_URI).then(res => {
-    console.log('db con');
+mongoose.connect(process.env.DB_URI).then((res) => {
+	console.log('db con')
 })
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
-app.use(session({
-    secret: "asecret",
-    resave: false,
-    saveUninitialized: true,
-    store: MongoStore.create({
-        mongoUrl: process.env.DB_URI,
-        collectionName: 'sessions',
-    })
-}));
+app.use(
+	session({
+		secret: 'asecret',
+		resave: false,
+		saveUninitialized: true,
+		store: MongoStore.create({
+			mongoUrl: process.env.DB_URI,
+			collectionName: 'sessions',
+		}),
+	})
+)
 
 require('./passportConfig')
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use('/', indexRouter)
 app.use('/api', apiRouter)
