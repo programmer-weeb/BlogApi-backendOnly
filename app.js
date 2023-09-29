@@ -28,6 +28,7 @@ app.use(session({
         collectionName: 'sessions',
     })
 }));
+
 require('./passportConfig')
 
 app.use(passport.initialize());

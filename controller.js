@@ -1,5 +1,6 @@
 const Post = require('./models/PostModel')
-const Comment = require('./models/CommentModel')
+const Comment = require('./models/CommentModel');
+const passport = require('passport');
 
 
 exports.getAllPosts = async (req, res, next) => {
@@ -41,3 +42,10 @@ exports.getCommentById = async (req, res, next) => {
     console.log(aComment);
     res.json(aComment)
 }
+
+exports.handleLogin = [
+    passport.authenticate('login'),
+    (req, res) => {
+        res.send('succ login')
+    }
+]

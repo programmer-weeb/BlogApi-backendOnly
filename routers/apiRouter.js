@@ -3,6 +3,7 @@ const router = express.Router()
 const controller = require('../controller');
 const Post = require('../models/PostModel');
 const Comment = require('../models/CommentModel');
+const passport = require('passport');
 
 router.get('/', (req, res) => {
     res.redirect('/api/posts')
@@ -18,7 +19,7 @@ router.get('/logout',)
 router.post('/posts',)
 router.post('/posts/:postId/comments',)
 router.post('/signup',)
-router.post('/login',)
+router.post('/login', controller.handleLogin)
 
 router.delete('/posts/:postId',)
 router.delete('/posts/:postId/comments',)
