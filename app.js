@@ -1,10 +1,8 @@
+/* eslint-disable linebreak-style */
 require('dotenv').config()
 const express = require('express')
-const LocalStrategy = require('passport-local').Strategy
 const app = express()
 const port = 3000
-const AuthorModel = require('./models/AuthorModel')
-const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
@@ -13,7 +11,8 @@ const passport = require('passport')
 const indexRouter = require('./routers/indexRouter')
 const apiRouter = require('./routers/apiRouter')
 
-mongoose.connect(process.env.DB_URI).then((res) => {
+// eslint-disable-next-line no-undef
+mongoose.connect(process.env.DB_URI).then(() => {
 	console.log('db con')
 })
 
@@ -25,6 +24,7 @@ app.use(
 		resave: false,
 		saveUninitialized: true,
 		store: MongoStore.create({
+			// eslint-disable-next-line no-undef
 			mongoUrl: process.env.DB_URI,
 			collectionName: 'sessions',
 		}),

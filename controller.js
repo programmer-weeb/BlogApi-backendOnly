@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 const Post = require('./models/PostModel')
 const Comment = require('./models/CommentModel')
 const passport = require('passport')
 const PostModel = require('./models/PostModel')
 
-exports.getAllPosts = async (req, res, next) => {
+exports.getAllPosts = async (req, res) => {
 	const posts = await Post.find().exec()
 	console.log('responding all posts')
 	console.log({ posts })
@@ -31,7 +32,7 @@ exports.getASinglePostById = async (req, res, next) => {
 	res.json(aPost)
 }
 
-exports.getCommentsOfAPost = async (req, res, next) => {
+exports.getCommentsOfAPost = async (req, res) => {
 	const allCommentsOfAPost = await Post.findById(req.params.postId)
 		.populate('comments')
 		.select('comments')
